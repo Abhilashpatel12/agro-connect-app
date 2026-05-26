@@ -1,0 +1,15 @@
+Migration inventory:
+  active: instruction files - 2 found
+    - CLAUDE.md
+    - AGENTS.md
+  inactive: skills - none found
+  inactive: command sources - none found
+  inactive: subagents - none found
+Migration surfaces:
+  active: AGENTS.md - 1 instruction file(s) found.
+  inactive: skills - No skills found.
+  inactive: MCP config - No settings or MCP config found.
+  inactive: subagents - No subagents found.
+Migration report:
+  added: AGENTS.md - Restored as a Codex instruction file after migration and added Figma-to-React-Native guidance.
+  not_added: Plugin expo@claude-plugins-official - Claude plugin enablement detected in .claude/settings.json; Codex plugin setup needs manual review.

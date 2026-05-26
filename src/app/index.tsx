@@ -1,98 +1,79 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { onboardingSteps } from '@/features/agro-onboarding/constants';
+import { DetailsScreen } from '@/features/agro-onboarding/screens/details-screen';
+import { OtpScreen } from '@/features/agro-onboarding/screens/otp-screen';
+import { PhoneScreen } from '@/features/agro-onboarding/screens/phone-screen';
+import { RoleScreen } from '@/features/agro-onboarding/screens/role-screen';
+import { WelcomeScreen } from '@/features/agro-onboarding/screens/welcome-screen';
+import { HomeScreen } from '@/features/home/screens/home-screen';
+import { onboardingStyles as styles } from '@/features/agro-onboarding/styles';
+import type { OnboardingStep } from '@/features/agro-onboarding/types';
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
+export default function OnboardingFlow() {
+  const router = useRouter();
+  const [step, setStep] = useState<OnboardingStep>('welcome');
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const [name, setName] = useState('');
+  const [village, setVillage] = useState('');
+  const [crop, setCrop] = useState('');
+  const [experience, setExperience] = useState('');
+  const [land, setLand] = useState('');
+  const safeAreaInsets = useSafeAreaInsets();
+
+  const stepIndex = onboardingSteps.indexOf(step);
+  const canGoBack = stepIndex > 0;
+  const nextStep = onboardingSteps[Math.min(stepIndex + 1, onboardingSteps.length - 1)];
+
+  function goBack() {
+    setStep(onboardingSteps[Math.max(stepIndex - 1, 0)]);
   }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
+    <SafeAreaView style={styles.root}>
+      <KeyboardAvoidingView
+        behavior={Platform.select({ ios: 'padding', default: undefined })}
+        style={styles.keyboardView}>
+        <ScrollView
+          bounces={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={[
+            styles.scrollContent,
+            { paddingBottom: Math.max(safeAreaInsets.bottom, 16) + 8 },
+          ]}>
+          <View style={styles.phoneCanvas}>
+            {step === 'welcome' && <WelcomeScreen onNext={() => setStep('roles')} />}
+            {step === 'roles' && <RoleScreen onNext={() => setStep('phone')} />}
+            {step === 'phone' && (
+              <PhoneScreen
+                phone={phone}
+                setPhone={setPhone}
+                onNext={() => setStep(phone.trim().length >= 10 ? nextStep : 'phone')}
+              />
+            )}
+            {step === 'otp' && <OtpScreen phone={phone} otp={otp} setOtp={setOtp} onNext={() => setStep(nextStep)} />}
+            {step === 'details' && (
+              <DetailsScreen
+                name={name}
+                setName={setName}
+                village={village}
+                setVillage={setVillage}
+                crop={crop}
+                setCrop={setCrop}
+                experience={experience}
+                setExperience={setExperience}
+                land={land}
+                setLand={setLand}
+                onNext={() => router.replace('/home' as any)}
+              />
+            )}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-});
