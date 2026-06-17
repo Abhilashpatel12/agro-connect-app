@@ -16,9 +16,9 @@ export function HomeScreen() {
             <Text style={styles.greeting}>Good Morning</Text>
             <Text style={styles.userName}>Rahul Kumar</Text>
           </View>
-          <View style={styles.bellButton}>
+          <Pressable style={styles.bellButton} onPress={() => router.push('/notifications' as any)}>
             <Ionicons name="notifications-outline" size={28} color="#4CAF50" />
-          </View>
+          </Pressable>
         </View>
 
         <View style={styles.statsContainer}>
