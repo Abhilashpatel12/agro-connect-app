@@ -63,6 +63,16 @@ export function HomeScreen() {
             <Text style={styles.activityTime}>2 hrs ago</Text>
           </View>
         </View>
+
+        {/* Test Links for new screens */}
+        <View style={{ padding: 20, gap: 10 }}>
+          <Pressable style={styles.addButton} onPress={() => router.push('/reply-review' as any)}>
+            <Text style={styles.addButtonText}>Test Reply Review Screen</Text>
+          </Pressable>
+          <Pressable style={[styles.addButton, { backgroundColor: '#F44336' }]} onPress={() => router.push('/report-review' as any)}>
+            <Text style={styles.addButtonText}>Test Report Review Screen</Text>
+          </Pressable>
+        </View>
       </ScrollView>
 
       {/* Bottom Bar */}
