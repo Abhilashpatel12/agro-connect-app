@@ -74,38 +74,38 @@ export function EditProfileScreen() {
           <FieldBox
             label="Full Name"
             value={form.fullName}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, fullName: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, fullName: t }))}
             labelColor="#898989"
           />
           <FieldBox
             label="Mobile Number"
             value={form.mobileNumber}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, mobileNumber: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, mobileNumber: t }))}
             labelColor="#898989"
             keyboardType="phone-pad"
           />
           <FieldBox
             label="Village / Town"
             value={form.village}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, village: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, village: t }))}
             labelColor="#898989"
           />
           <FieldBox
             label="Primary Crop Type"
             value={form.cropType}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, cropType: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, cropType: t }))}
             labelColor="#898989"
           />
           <FieldBox
             label="Years of Experience"
             value={form.experience}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, experience: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, experience: t }))}
             labelColor="#6D6D6D"
           />
           <FieldBox
             label="Land Size (Acres)"
             value={form.landSize}
-            onChangeText={(t) => setForm((prev) => ({ ...prev, landSize: t }))}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, landSize: t }))}
             labelColor="#898989"
           />
         </View>
