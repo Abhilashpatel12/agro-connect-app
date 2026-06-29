@@ -10,7 +10,7 @@ type PanCardScreenProps = {
 };
 
 export function PanCardScreen({ panNumber, setPanNumber, onNext }: PanCardScreenProps) {
-  // Assuming a valid PAN is exactly 10 characters alphanumeric
+
   const isValid = panNumber.trim().length === 10;
 
   return (
@@ -69,9 +69,9 @@ export function PanCardScreen({ panNumber, setPanNumber, onNext }: PanCardScreen
 
       {/* ─── Footer ─── */}
       <View style={styles.panFooter}>
-        <TouchableOpacity 
-          activeOpacity={0.7} 
-          style={[styles.panContinueButton, isValid && { backgroundColor: '#4CAF50' }]} 
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={[styles.panContinueButton, isValid && { backgroundColor: '#4CAF50' }]}
           onPress={onNext}
           disabled={!isValid}
         >

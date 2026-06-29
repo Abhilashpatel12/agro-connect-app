@@ -339,14 +339,13 @@ export const onboardingStyles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: vs(414),
-    transform: [{ scale: 1.15 }], // Zooms the image by 15% without altering the container layout
   },
   roleBgGradient: {
     position: 'absolute',
     left: 0,
     right: 0,
-    top: vs(150), // Start fading a bit earlier to blend
-    bottom: 0, // Stretch to the bottom perfectly
+    top: vs(150),
+    bottom: 0,
   },
   roleScrollContent: {
     flex: 1,
@@ -357,11 +356,12 @@ export const onboardingStyles = StyleSheet.create({
   },
   roleTopSection: {
     alignItems: 'center',
-    marginTop: vs(60),
-    marginBottom: vs(40),
+    marginTop: vs(78),
+    marginBottom: vs(119),
   },
   roleHeaderContainer: {
     alignItems: 'center',
+    marginBottom: vs(43),
   },
   roleWelcomeText: {
     fontFamily: 'Poppins_400Regular',
@@ -396,7 +396,7 @@ export const onboardingStyles = StyleSheet.create({
     textAlign: 'center',
   },
   roleList: {
-    gap: vs(10), // Shrunk from 12
+    gap: vs(12),
   },
   roleListCard: {
     flexDirection: 'row',
@@ -405,17 +405,17 @@ export const onboardingStyles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
     borderRadius: s(14),
-    paddingVertical: vs(10), // Shrunk from 14
-    paddingHorizontal: s(12), // Shrunk from 16
-    gap: s(12), // Shrunk from 15
+    paddingVertical: vs(14),
+    paddingHorizontal: s(16),
+    gap: s(15),
   },
   roleListCardSelected: {
     backgroundColor: '#FAFAF9',
   },
   roleListImage: {
-    width: s(120), // Shrunk from 159
+    width: s(159),
     aspectRatio: 159 / 106,
-    borderRadius: s(12),
+    borderRadius: s(15),
   },
   roleListTextContent: {
     flex: 1,
@@ -423,15 +423,15 @@ export const onboardingStyles = StyleSheet.create({
   },
   roleListLabel: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: ms(14), // Shrunk from 16
+    fontSize: ms(16),
     color: '#000000',
-    lineHeight: ms(18), // Shrunk from 21
+    lineHeight: ms(21),
   },
   roleListCaption: {
-    fontFamily: 'Outfit_400Regular',
+    fontFamily: 'DMSans_400Regular',
     fontSize: ms(12),
-    lineHeight: ms(16),
-    color: '#686868',
+    lineHeight: ms(19),
+    color: '#000000',
   },
   roleActionContainer: {
     paddingHorizontal: s(20),

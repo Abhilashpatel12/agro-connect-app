@@ -1,19 +1,18 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  Platform,
-} from 'react-native';
-import { Image } from 'expo-image';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { VerifiedBadge } from '@/components/VerifiedBadge';
+import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
+import { router } from 'expo-router';
+import {
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { s, vs, ms } from '@/utils/scale';
+import { ms, s, vs } from '@/utils/scale';
 // ─── Mock Data ───────────────────────────────────────────────────────────────
 // Easy to swap out: replace FARMER, CROPS, and REVIEWS with real API data.
 
@@ -90,7 +89,7 @@ const REVIEWS = [
   },
 ];
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+//Sub-components 
 
 function StarRow({ count, size = 14 }: { count: number; size?: number }) {
   return (
@@ -166,7 +165,7 @@ function ReviewCard({ initial, name, date, stars, text }: (typeof REVIEWS)[0]) {
   );
 }
 
-// ─── Main Screen ──────────────────────────────────────────────────────────────
+// Main Screen 
 
 export function FarmerProfileScreen() {
   return (
@@ -273,8 +272,7 @@ export function FarmerProfileScreen() {
   );
 }
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
-
+// Styles
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

@@ -22,6 +22,7 @@ export function RoleScreen({ onNext }: RoleScreenProps) {
           source={require('@/assets/images/image 140.png')}
           style={styles.roleBgImage}
           contentFit="cover"
+          contentPosition="bottom"
         />
         <LinearGradient
           colors={[

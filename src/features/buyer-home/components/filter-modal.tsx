@@ -80,7 +80,7 @@ const FILTER_DATA = [
 
 export function FilterModal({ visible, onClose }: FilterModalProps) {
   const [expandedSection, setExpandedSection] = useState<string>('Price');
-  
+
   const [selections, setSelections] = useState<Record<string, string>>({
     'Price': '₹ 20 - 30 /kg',
     'Distance': 'Within 15km',
@@ -130,30 +130,24 @@ export function FilterModal({ visible, onClose }: FilterModalProps) {
         <Pressable style={styles.backdrop} onPress={onClose}>
           <BlurView intensity={20} style={styles.backdrop} tint="light" />
         </Pressable>
-        
+
         <Animated.View style={[styles.bottomSheet, { transform: [{ translateY: slideAnim }] }]}>
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            
+
             {FILTER_DATA.map((filter) => (
               <View key={filter.category} style={styles.sectionContainer}>
                 <Pressable style={styles.sectionHeader} onPress={() => toggleSection(filter.category)}>
                   <Text style={styles.sectionTitle}>{filter.category}</Text>
-                  <Ionicons 
-                    name={expandedSection === filter.category ? "caret-up" : "caret-down"} 
-                    size={14} 
-                    color="#1C1B1F" 
-                  />
+                  <Ionicons name={expandedSection === filter.category ? 'chevron-up' : 'chevron-down'} size={24} color="#6D6D6D" />
                 </Pressable>
-                
                 {expandedSection === filter.category && (
                   <View style={styles.sectionBody}>
                     <Text style={styles.bodyTitle}>{filter.title}</Text>
-                    
-                    {filter.options.map((option, index) => {
+                    {filter.options.map(option => {
                       const isSelected = selections[filter.category] === option;
                       return (
                         <Pressable 
-                          key={index} 
+                          key={option} 
                           style={styles.radioRow}
                           onPress={() => handleSelect(filter.category, option)}
                         >
@@ -168,16 +162,13 @@ export function FilterModal({ visible, onClose }: FilterModalProps) {
                 )}
               </View>
             ))}
-
           </ScrollView>
-
-          {/* Sticky Footer */}
           <View style={styles.footer}>
             <Pressable style={styles.resetButton} onPress={handleReset}>
-              <Text style={styles.resetText}>Reset</Text>
+              <Text style={styles.resetText}>Reset All</Text>
             </Pressable>
             <Pressable style={styles.applyButton} onPress={onClose}>
-              <Text style={styles.applyText}>Apply</Text>
+              <Text style={styles.applyText}>Apply Filter</Text>
             </Pressable>
           </View>
         </Animated.View>
