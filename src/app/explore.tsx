@@ -12,6 +12,7 @@ import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
+import { s, vs, ms } from '@/utils/scale';
 export default function TabTwoScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const insets = {
@@ -174,8 +175,8 @@ const styles = StyleSheet.create({
     marginTop: Spacing.two,
   },
   imageReact: {
-    width: 100,
-    height: 100,
+    width: s(100),
+    height: vs(100),
     alignSelf: 'center',
   },
 });

@@ -1,30 +1,24 @@
 import type { OnboardingStep, Role } from './types';
 
-export const onboardingSteps: OnboardingStep[] = ['welcome', 'roles', 'phone', 'otp', 'details', 'home'];
+export const onboardingSteps: OnboardingStep[] = ['welcome', 'roles', 'auth-method', 'phone', 'otp', 'pan-card', 'aadhaar-card', 'bank-account', 'details', 'documents-submitted', 'home'];
 
 export const roles: Role[] = [
   {
     label: 'Farmer',
-    caption: 'Grow crops',
-    source: require('@/assets/images/image 5.svg'),
-    tint: '#dff4e0',
+    caption: 'List your crops, reach buyers and grow your business.',
+    source: require('@/assets/images/image 142.png'),
+    tint: '#ffffff',
   },
   {
     label: 'Buyer',
-    caption: 'Buy produce',
-    source: require('@/assets/images/image 9.svg'),
-    tint: '#fff4c7',
+    caption: 'Find quality crops, connect with farmers and place orders.',
+    source: require('@/assets/images/image 143.png'),
+    tint: '#ffffff',
   },
   {
-    label: 'Farmer',
-    caption: 'Sell fresh stock',
-    source: require('@/assets/images/7cdec4c989dd0fc608bf39b038919749db0d79f2.png'),
-    tint: '#e5f6dc',
-  },
-  {
-    label: 'Farmer',
-    caption: 'Local market',
-    source: require('@/assets/images/dbd33571f4be87701a393d78c14f461f64302df2.png'),
-    tint: '#ffe5d8',
+    label: 'Delivery Partner',
+    caption: 'Delivery orders safely, earn on every trip grow with us.',
+    source: require('@/assets/images/image 145.png'),
+    tint: '#ffffff',
   },
 ];

@@ -3,7 +3,6 @@ import { ScrollView, Text, View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../styles';
-import { NavBar } from '@/components/nav-bar';
 
 export function HomeScreen() {
   const router = useRouter();
@@ -76,7 +75,6 @@ export function HomeScreen() {
       </ScrollView>
 
       {/* Bottom Bar */}
-      <NavBar />
     </View>
   );
 }

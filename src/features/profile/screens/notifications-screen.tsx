@@ -1,11 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Platform, Switch } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function NotificationsScreen() {
   const router = useRouter();
+  const { role } = useLocalSearchParams<{ role?: string }>();
   const insets = useSafeAreaInsets();
 
   const [toggles, setToggles] = useState({
@@ -16,6 +18,10 @@ export function NotificationsScreen() {
     buyerRequests: true,
     promotional: false,
     appUpdates: false,
+    orderUpdates: true,
+    deliveryAlerts: true,
+    priceAlerts: true,
+    newListings: true,
   });
 
   const toggleSwitch = (key: keyof typeof toggles) => {
@@ -41,48 +47,91 @@ export function NotificationsScreen() {
         ]}>
         
         <View style={styles.list}>
-          <SettingItem
-            title="New Order Alerts"
-            description="When a buyer places an order"
-            value={toggles.newOrder}
-            onToggle={() => toggleSwitch('newOrder')}
-          />
-          <SettingItem
-            title="Payment Received"
-            description="When payment is credited"
-            value={toggles.payment}
-            onToggle={() => toggleSwitch('payment')}
-          />
-          <SettingItem
-            title="Delivery Updates"
-            description="Rider pickup & delivery status"
-            value={toggles.delivery}
-            onToggle={() => toggleSwitch('delivery')}
-          />
-          <SettingItem
-            title="Price Alerts"
-            description="When market prices change"
-            value={toggles.price}
-            onToggle={() => toggleSwitch('price')}
-          />
-          <SettingItem
-            title="New Buyer Requests"
-            description="When buyers enquire about crops"
-            value={toggles.buyerRequests}
-            onToggle={() => toggleSwitch('buyerRequests')}
-          />
-          <SettingItem
-            title="Promotional Offers"
-            description="Deals, plans upgrades"
-            value={toggles.promotional}
-            onToggle={() => toggleSwitch('promotional')}
-          />
-          <SettingItem
-            title="App Updates"
-            description="New features and improvements"
-            value={toggles.appUpdates}
-            onToggle={() => toggleSwitch('appUpdates')}
-          />
+          {role === 'buyer' ? (
+            <>
+              <SettingItem
+                title="Order Updates"
+                description="Get notified when your order is confirmed, shipped, or delivered."
+                value={toggles.orderUpdates}
+                onToggle={() => toggleSwitch('orderUpdates')}
+              />
+              <SettingItem
+                title="Delivery Alerts"
+                description="Receive updates about delivery progress and arrival times."
+                value={toggles.deliveryAlerts}
+                onToggle={() => toggleSwitch('deliveryAlerts')}
+              />
+              <SettingItem
+                title="Price Alerts"
+                description="Get notified when crop prices change in your area."
+                value={toggles.priceAlerts}
+                onToggle={() => toggleSwitch('priceAlerts')}
+              />
+              <SettingItem
+                title="New Listings"
+                description="Receive alerts when farmers add new crops and products."
+                value={toggles.newListings}
+                onToggle={() => toggleSwitch('newListings')}
+              />
+              <SettingItem
+                title="Promotional Offers"
+                description="Get updates about discounts, deals, and special offers."
+                value={toggles.promotional}
+                onToggle={() => toggleSwitch('promotional')}
+              />
+              <SettingItem
+                title="App Updates"
+                description="New features and improvements"
+                value={toggles.appUpdates}
+                onToggle={() => toggleSwitch('appUpdates')}
+              />
+            </>
+          ) : (
+            <>
+              <SettingItem
+                title="New Order Alerts"
+                description="When a buyer places an order"
+                value={toggles.newOrder}
+                onToggle={() => toggleSwitch('newOrder')}
+              />
+              <SettingItem
+                title="Payment Received"
+                description="When payment is credited"
+                value={toggles.payment}
+                onToggle={() => toggleSwitch('payment')}
+              />
+              <SettingItem
+                title="Delivery Updates"
+                description="Rider pickup & delivery status"
+                value={toggles.delivery}
+                onToggle={() => toggleSwitch('delivery')}
+              />
+              <SettingItem
+                title="Price Alerts"
+                description="When market prices change"
+                value={toggles.price}
+                onToggle={() => toggleSwitch('price')}
+              />
+              <SettingItem
+                title="New Buyer Requests"
+                description="When buyers enquire about crops"
+                value={toggles.buyerRequests}
+                onToggle={() => toggleSwitch('buyerRequests')}
+              />
+              <SettingItem
+                title="Promotional Offers"
+                description="Deals, plans upgrades"
+                value={toggles.promotional}
+                onToggle={() => toggleSwitch('promotional')}
+              />
+              <SettingItem
+                title="App Updates"
+                description="New features and improvements"
+                value={toggles.appUpdates}
+                onToggle={() => toggleSwitch('appUpdates')}
+              />
+            </>
+          )}
         </View>
 
         <View style={styles.divider} />
@@ -140,29 +189,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
   },
   list: {
-    gap: 15,
+    gap: s(15),
   },
   itemBox: {
     flexDirection: 'row',
@@ -171,55 +220,55 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    minHeight: 68,
+    borderRadius: s(14),
+    paddingVertical: vs(14),
+    paddingHorizontal: s(16),
+    minHeight: vs(68),
   },
   itemTextContainer: {
     flex: 1,
-    paddingRight: 16,
-    gap: 4,
+    paddingRight: s(16),
+    gap: s(4),
   },
   itemTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   itemDescription: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
   statusText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#4CAF50',
   },
   divider: {
-    height: 1,
+    height: vs(1),
     backgroundColor: '#EBEBEB',
-    marginVertical: 24,
+    marginVertical: vs(24),
   },
   sectionTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
-    marginBottom: 12,
+    marginBottom: vs(12),
   },
   bottomBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
     backgroundColor: '#FAFAF9',
   },
   saveButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
@@ -239,7 +288,7 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
 });

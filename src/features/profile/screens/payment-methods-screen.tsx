@@ -1,11 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function PaymentMethodsScreen() {
   const router = useRouter();
+  const { role } = useLocalSearchParams<{ role?: string }>();
   const insets = useSafeAreaInsets();
 
   return (
@@ -60,21 +62,25 @@ export function PaymentMethodsScreen() {
           </View>
         </View>
 
-        <View style={styles.divider} />
+        {role !== 'buyer' && (
+          <>
+            <View style={styles.divider} />
 
-        {/* Payout Preferences Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Payout Preferences</Text>
-          <View style={styles.cardList}>
-            <InfoRow label="Payout Schedule" value="After Order Delivered" />
-            <InfoRow label="Minmium Payout" value="500" />
-            <InfoRow label="Auto-Transfer" value="Enabled" />
-            <InfoRow label="GST Number" value="22AAAAA0000A1Z5" />
-            <Pressable style={styles.actionButton} onPress={() => router.push('/profile/payout-preferences')}>
-              <Text style={styles.actionButtonText}>Change Payout Preferences</Text>
-            </Pressable>
-          </View>
-        </View>
+            {/* Payout Preferences Section */}
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Payout Preferences</Text>
+              <View style={styles.cardList}>
+                <InfoRow label="Payout Schedule" value="After Order Delivered" />
+                <InfoRow label="Minmium Payout" value="500" />
+                <InfoRow label="Auto-Transfer" value="Enabled" />
+                <InfoRow label="GST Number" value="22AAAAA0000A1Z5" />
+                <Pressable style={styles.actionButton} onPress={() => router.push('/profile/payout-preferences')}>
+                  <Text style={styles.actionButtonText}>Change Payout Preferences</Text>
+                </Pressable>
+              </View>
+            </View>
+          </>
+        )}
 
       </ScrollView>
     </View>
@@ -99,66 +105,66 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    gap: 20,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
+    gap: s(20),
   },
   section: {
-    gap: 12,
+    gap: s(12),
   },
   sectionTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
   },
   cardList: {
-    gap: 12,
+    gap: s(12),
   },
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 18,
+    paddingVertical: vs(16),
+    paddingHorizontal: s(18),
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
+    borderRadius: s(14),
   },
   infoLabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
   infoValue: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
   },
   actionButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: vs(8),
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(76, 175, 80, 0.12)',
@@ -176,12 +182,12 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
   divider: {
-    height: 1,
+    height: vs(1),
     backgroundColor: '#EBEBEB',
-    marginVertical: 4,
+    marginVertical: vs(4),
   },
 });

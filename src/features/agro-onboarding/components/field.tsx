@@ -14,14 +14,14 @@ export function Field({ label, onChangeText, placeholder, value, errorMessage }:
   return (
     <>
       <View style={[styles.formGroup, errorMessage ? styles.formGroupError : null]}>
-      <Text style={styles.inputLabel}>{label}</Text>
-      <TextInput
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-        placeholderTextColor="#8c8c8c"
-        style={styles.input}
-        value={value}
-      />
+        <Text style={styles.inputLabel}>{label}</Text>
+        <TextInput
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor="#8c8c8c"
+          style={styles.input}
+          value={value}
+        />
       </View>
       {!!errorMessage && (
         <View style={styles.errorBlock}>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { s, vs, ms } from '@/utils/scale';
 interface ReviewCardProps {
   initial?: string;
   name?: string;
@@ -47,57 +48,57 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 14,
+    borderRadius: s(14),
+    padding: s(14),
     width: '100%',
-    marginBottom: 20,
+    marginBottom: vs(20),
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 12,
+    marginBottom: vs(12),
   },
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: s(12),
   },
   avatar: {
-    width: 40,
-    height: 40,
+    width: s(40),
+    height: vs(40),
     backgroundColor: '#4CAF50',
-    borderRadius: 20,
+    borderRadius: s(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
   avatarText: {
     color: '#FFFFFF',
     fontFamily: 'DMSans_500Medium',
-    fontSize: 19,
+    fontSize: ms(19),
   },
   userName: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
-    marginBottom: 4,
+    marginBottom: vs(4),
   },
   stars: {
     flexDirection: 'row',
-    gap: 4,
+    gap: s(4),
   },
   star: {
-    marginRight: 2,
+    marginRight: s(2),
   },
   date: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
   reviewText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
-    lineHeight: 22,
+    fontSize: ms(14),
+    lineHeight: ms(22),
     color: '#898989',
   },
 });

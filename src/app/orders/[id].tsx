@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
-import { styles } from './styles';
+import { styles } from './_styles';
 
 // Dummy data for order details mapping from order id
 const ORDER_DETAILS_DATA: Record<string, any> = {

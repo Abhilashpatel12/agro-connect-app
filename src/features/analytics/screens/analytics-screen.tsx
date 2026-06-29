@@ -1,36 +1,48 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Pressable, Modal } from 'react-native';
+import { View, Text, ScrollView, Pressable, Modal, Alert } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { styles } from '../styles';
-import { NavBar } from '@/components/nav-bar';
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const YEARS = ['2026', '2025', '2024', '2023', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
-
-const MONTH_MAP: Record<string, string> = {
-  Jan: 'January',
-  Feb: 'February',
-  Mar: 'March',
-  Apr: 'April',
-  May: 'May',
-  Jun: 'June',
-  Jul: 'July',
-  Aug: 'August',
-  Sep: 'September',
-  Oct: 'October',
-  Nov: 'November',
-  Dec: 'December',
+const generateMonths = () => {
+  return Array.from({ length: 12 }, (_, i) => {
+    const d = new Date(2000, i, 1);
+    return d.toLocaleString('en-US', { month: 'short' });
+  });
 };
+
+const generateMonthMap = () => {
+  const map: Record<string, string> = {};
+  Array.from({ length: 12 }, (_, i) => {
+    const d = new Date(2000, i, 1);
+    const short = d.toLocaleString('en-US', { month: 'short' });
+    const long = d.toLocaleString('en-US', { month: 'long' });
+    map[short] = long;
+  });
+  return map;
+};
+
+const generateYears = () => {
+  const currentYear = new Date().getFullYear();
+  return Array.from({ length: 12 }, (_, i) => (currentYear - i).toString());
+};
+
+const MONTHS = generateMonths();
+const MONTH_MAP = generateMonthMap();
+const YEARS = generateYears();
 
 export function AnalyticsScreen() {
   const router = useRouter();
+  const currentMonthShort = new Date().toLocaleString('en-US', { month: 'short' });
+  const currentYearStr = new Date().getFullYear().toString();
+  const currentMonthLong = new Date().toLocaleString('en-US', { month: 'long' });
+
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState('Jun');
-  const [selectedYear, setSelectedYear] = useState('2026');
-  const [appliedMonth, setAppliedMonth] = useState('June');
-  const [appliedYear, setAppliedYear] = useState('2026');
+  const [selectedMonth, setSelectedMonth] = useState(currentMonthShort);
+  const [selectedYear, setSelectedYear] = useState(currentYearStr);
+  const [appliedMonth, setAppliedMonth] = useState(currentMonthLong);
+  const [appliedYear, setAppliedYear] = useState(currentYearStr);
 
   const handleApply = () => {
     setAppliedMonth(MONTH_MAP[selectedMonth] || selectedMonth);
@@ -51,7 +63,7 @@ export function AnalyticsScreen() {
             <Pressable style={styles.backButton} onPress={() => router.back()}>
               <Ionicons name="arrow-back-outline" size={24} color="#FFFFFF" />
             </Pressable>
-            <Text style={styles.headerTitle}>Analytics & Reports</Text>
+            <Text style={styles.headerTitle}>Analytics</Text>
           </View>
           
           <Pressable style={styles.filterButton} onPress={() => setIsFilterVisible(true)}>
@@ -63,7 +75,7 @@ export function AnalyticsScreen() {
         {/* Stats Grid */}
         <View style={styles.gridContainer}>
           {/* Card 1: Total Revenue */}
-          <View style={styles.card}>
+          <Pressable style={styles.card} onPress={() => router.push('/analytics/payout-history')}>
             <View style={styles.cardIconBox}>
               <Image source={require('@/assets/images/at money icon.png')} style={styles.cardIcon} contentFit="contain" />
             </View>
@@ -78,12 +90,12 @@ export function AnalyticsScreen() {
               <Ionicons name="arrow-up" size={14} color="#4CAF50" />
               <Text style={styles.cardTrendText}>12% vs Feb 2026</Text>
             </View>
-          </View>
+          </Pressable>
 
           {/* Card 2: Total Orders */}
-          <View style={styles.card}>
+          <Pressable style={styles.card} onPress={() => router.push('/orders?tab=Active')}>
             <View style={styles.cardIconBox}>
-              <Image source={require('@/assets/orders_assests/image_121_612_682.png')} style={styles.cardIcon} contentFit="contain" />
+              <Image source={require('@/assets/images/image.png')} style={styles.cardIcon} contentFit="contain" />
             </View>
             <View style={{ gap: 4 }}>
               <Text style={styles.cardLabel}>Total Orders</Text>
@@ -93,10 +105,10 @@ export function AnalyticsScreen() {
               <Ionicons name="arrow-up" size={14} color="#4CAF50" />
               <Text style={styles.cardTrendText}>8 vs Feb 2026</Text>
             </View>
-          </View>
+          </Pressable>
 
           {/* Card 3: Active Listing */}
-          <View style={styles.card}>
+          <Pressable style={styles.card} onPress={() => router.push('/crops')}>
             <View style={styles.cardIconBox}>
               <Image source={require('@/assets/images/image 11.svg')} style={styles.cardIcon} contentFit="contain" />
             </View>
@@ -105,10 +117,10 @@ export function AnalyticsScreen() {
               <Text style={styles.cardValue}>12 Crops</Text>
             </View>
             <Text style={styles.cardSubtext}>Current Live</Text>
-          </View>
+          </Pressable>
 
           {/* Card 4: Average Rating */}
-          <View style={styles.card}>
+          <Pressable style={styles.card} onPress={() => router.push('/ratings')}>
             <View style={styles.cardIconBox}>
               <Image source={require('@/assets/profile_assests/image 90.svg')} style={styles.cardIcon} contentFit="contain" />
             </View>
@@ -116,11 +128,11 @@ export function AnalyticsScreen() {
               <Text style={styles.cardLabel}>Average Rating</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                 <Text style={styles.cardValue}>4.8</Text>
-                <Image source={require('@/assets/orders_assests/image_91_615_1627.png')} style={{ width: 14, height: 14 }} contentFit="contain" />
+                <Ionicons name="star" size={14} color="#FFC107" />
               </View>
             </View>
             <Text style={styles.cardSubtext}>Based on 124 Reviews</Text>
-          </View>
+          </Pressable>
         </View>
 
         {/* Revenue Overview Chart */}
@@ -228,7 +240,7 @@ export function AnalyticsScreen() {
         {/* Recent Performance */}
         <View style={styles.recentHeaderRow}>
           <Text style={styles.recentTitle}>Recent Performance</Text>
-          <Pressable style={styles.seeAllButton}>
+          <Pressable style={styles.seeAllButton} onPress={() => router.push('/analytics/top-crops')}>
             <Text style={styles.seeAllText}>See all</Text>
           </Pressable>
         </View>
@@ -245,7 +257,7 @@ export function AnalyticsScreen() {
               <Text style={styles.recentItemTitle}>Tomato Hybrid</Text>
               <Text style={styles.recentItemSub}>22 Orders</Text>
               <View style={styles.progressBarBg}>
-                <View style={[styles.progressBarFill, { width: 170 }]} />
+                <View style={[styles.progressBarFill, { width: '80%' }]} />
               </View>
             </View>
             <View style={styles.recentItemRight}>
@@ -265,7 +277,7 @@ export function AnalyticsScreen() {
               <Text style={styles.recentItemTitle}>Tomato Hybrid</Text>
               <Text style={styles.recentItemSub}>22 Orders</Text>
               <View style={styles.progressBarBg}>
-                <View style={[styles.progressBarFill, { width: 170 }]} />
+                <View style={[styles.progressBarFill, { width: '80%' }]} />
               </View>
             </View>
             <View style={styles.recentItemRight}>
@@ -285,7 +297,7 @@ export function AnalyticsScreen() {
               <Text style={styles.recentItemTitle}>Tomato Hybrid</Text>
               <Text style={styles.recentItemSub}>22 Orders</Text>
               <View style={styles.progressBarBg}>
-                <View style={[styles.progressBarFill, { width: 170 }]} />
+                <View style={[styles.progressBarFill, { width: '80%' }]} />
               </View>
             </View>
             <View style={styles.recentItemRight}>
@@ -296,7 +308,20 @@ export function AnalyticsScreen() {
         </View>
 
         {/* Download Report Button */}
-        <Pressable style={styles.downloadButton}>
+        <Pressable 
+          style={styles.downloadButton}
+          onPress={() => {
+            Alert.alert(
+              "Download Report",
+              "Choose report format to download:",
+              [
+                { text: "PDF", onPress: () => Alert.alert("Success", "PDF report downloaded successfully!") },
+                { text: "Excel", onPress: () => Alert.alert("Success", "Excel report downloaded successfully!") },
+                { text: "Cancel", style: "cancel" }
+              ]
+            );
+          }}
+        >
           <Text style={styles.downloadText}>Download Report</Text>
           <Text style={styles.downloadSubtext}>PDF / Excel</Text>
         </Pressable>
@@ -382,7 +407,6 @@ export function AnalyticsScreen() {
       )}
 
       {/* Bottom Bar Tab Bar */}
-      <NavBar />
     </View>
   );
 }

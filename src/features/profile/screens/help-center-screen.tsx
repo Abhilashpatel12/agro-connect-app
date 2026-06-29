@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Platform, LayoutAnimation } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 type FAQItem = {
   id: string;
   question: string;
@@ -120,58 +121,58 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
   },
   faqList: {
-    gap: 15,
+    gap: s(15),
   },
   faqCard: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#CECFCE',
-    borderRadius: 14,
+    borderRadius: s(14),
     overflow: 'hidden',
   },
   faqHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
+    padding: s(16),
   },
   faqQuestion: {
     flex: 1,
     fontFamily: 'DMSans_500Medium',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
-    paddingRight: 16,
+    paddingRight: s(16),
   },
   faqAnswerContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingHorizontal: s(16),
+    paddingBottom: vs(16),
   },
   faqAnswer: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#525252',
-    lineHeight: 20,
+    lineHeight: ms(20),
   },
 });

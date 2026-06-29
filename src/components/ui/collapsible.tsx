@@ -8,6 +8,7 @@ import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
+import { s, vs, ms } from '@/utils/scale';
 export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   button: {
     width: Spacing.four,
     height: Spacing.four,
-    borderRadius: 12,
+    borderRadius: s(12),
     justifyContent: 'center',
     alignItems: 'center',
   },

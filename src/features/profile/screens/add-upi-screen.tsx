@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, TextInput, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function AddUpiScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
@@ -53,6 +54,8 @@ export function AddUpiScreen() {
           />
         </View>
 
+        <View style={styles.statusDivider} />
+
         <View style={styles.statusContainer}>
           <Text style={styles.statusTitle}>Status</Text>
           <View style={styles.radioGroup}>
@@ -74,7 +77,6 @@ export function AddUpiScreen() {
       </ScrollView>
 
       <View style={[styles.bottomContainer, { paddingBottom: Math.max(insets.bottom, 20) }]}>
-        <View style={styles.divider} />
         <Pressable 
           style={styles.verifyButton} 
           onPress={() => router.push('/profile/upi-verified')}
@@ -95,71 +97,71 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    gap: 16,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
+    gap: s(16),
   },
   inputContainer: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    borderRadius: s(14),
+    paddingHorizontal: s(20),
+    paddingVertical: vs(12),
   },
   inputLabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
-    marginBottom: 4,
+    marginBottom: vs(4),
   },
   input: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
     padding: 0,
-    height: 24,
+    height: vs(24),
   },
   statusContainer: {
-    marginTop: 8,
-    gap: 12,
+    marginTop: vs(8),
+    gap: s(12),
   },
   statusTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
   },
   radioGroup: {
     flexDirection: 'row',
-    gap: 40,
+    gap: s(59),
   },
   radioOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: s(10),
   },
   outerCircle: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
+    width: s(16),
+    height: vs(16),
+    borderRadius: s(8),
     borderWidth: 1.8,
     borderColor: '#4CAF50',
     justifyContent: 'center',
@@ -170,14 +172,14 @@ const styles = StyleSheet.create({
     borderColor: '#4CAF50',
   },
   innerCircle: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: s(8),
+    height: vs(8),
+    borderRadius: s(4),
     backgroundColor: '#4CAF50',
   },
   radioText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   bottomContainer: {
@@ -186,21 +188,21 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: '#FAFAF9',
-    paddingTop: 10,
+    paddingTop: vs(10),
   },
-  divider: {
-    height: 1,
+  statusDivider: {
+    height: vs(1),
     backgroundColor: '#EBEBEB',
-    marginBottom: 20,
-    marginHorizontal: 20,
+    marginTop: vs(8),
+    marginBottom: vs(16),
   },
   verifyButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 20,
+    marginHorizontal: s(20),
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(76, 175, 80, 0.12)',
@@ -218,7 +220,7 @@ const styles = StyleSheet.create({
   },
   verifyButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
 });

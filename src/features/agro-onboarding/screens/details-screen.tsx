@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Text, View } from 'react-native';
 
 import { Field } from '../components/field';
 import { PrimaryButton } from '../components/primary-button';

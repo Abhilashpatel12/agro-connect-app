@@ -8,6 +8,7 @@ import { ThemedView } from './themed-view';
 
 import { Spacing } from '@/constants/theme';
 
+import { s, vs, ms } from '@/utils/scale';
 export function WebBadge() {
   const scheme = useColorScheme();
 
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   badgeImage: {
-    width: 123,
+    width: s(123),
     aspectRatio: 123 / 24,
   },
 });

@@ -4,7 +4,6 @@ import { Image } from 'expo-image';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { styles } from '../styles';
-import { NavBar } from '@/components/nav-bar';
 
 type TabType = 'All' | 'Live' | 'Sold' | 'Draft';
 
@@ -73,7 +72,6 @@ export function CropsScreen() {
       </ScrollView>
 
       {/* Bottom Bar */}
-      <NavBar />
     </View>
   );
 }

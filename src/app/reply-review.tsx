@@ -5,6 +5,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { ReviewCard } from '@/components/ReviewCard';
 import { ConfirmModal } from '@/components/ConfirmModal';
 
+import { s, vs, ms } from '@/utils/scale';
 export default function ReplyReviewScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -36,7 +37,7 @@ export default function ReplyReviewScreen() {
 
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>Write a reply</Text>
-            <Text style={styles.inputSublabel}>Your reply will be visible to the buyer's.</Text>
+            <Text style={styles.inputSublabel}>{"Your reply will be visible to the buyer's."}</Text>
             
             <View style={styles.textAreaWrapper}>
               <TextInput
@@ -80,70 +81,70 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
+    paddingBottom: vs(20),
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   content: {
-    padding: 20,
+    padding: s(20),
   },
   inputContainer: {
-    marginTop: 10,
+    marginTop: vs(10),
   },
   inputLabel: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
-    marginBottom: 2,
+    marginBottom: vs(2),
   },
   inputSublabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
-    marginBottom: 16,
+    marginBottom: vs(16),
   },
   textAreaWrapper: {
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
+    borderRadius: s(14),
     backgroundColor: '#FFFFFF',
-    height: 229,
-    padding: 16,
+    height: vs(229),
+    padding: s(16),
   },
   textArea: {
     flex: 1,
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   charCount: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
     textAlign: 'right',
-    marginTop: 8,
+    marginTop: vs(8),
   },
   footer: {
-    padding: 20,
+    padding: s(20),
     paddingBottom: Platform.OS === 'ios' ? 0 : 20,
   },
   submitButton: {
     backgroundColor: '#4CAF50',
-    height: 50,
-    borderRadius: 14,
+    height: vs(50),
+    borderRadius: s(14),
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#4CAF50',
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
 });

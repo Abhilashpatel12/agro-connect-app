@@ -5,6 +5,7 @@ import { Pressable, Text, View, StyleSheet, Platform } from 'react-native';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function UpiVerifiedScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
@@ -52,17 +53,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    marginTop: -80,
+    paddingHorizontal: s(20),
+    marginTop: vs(-80),
   },
   iconContainer: {
-    marginBottom: 32,
+    marginBottom: vs(32),
   },
   badge: {
-    width: 80,
-    height: 80,
+    width: s(80),
+    height: vs(80),
     backgroundColor: '#1EAD36',
-    borderRadius: 40,
+    borderRadius: s(40),
     justifyContent: 'center',
     alignItems: 'center',
     // Using a simple badge shape, ideally we'd use an SVG for the exact jagged badge
@@ -83,45 +84,45 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Poppins_600SemiBold',
-    fontSize: 24,
+    fontSize: ms(24),
     color: '#4CAF50',
-    marginBottom: 12,
+    marginBottom: vs(12),
   },
   subtitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
     textAlign: 'center',
-    lineHeight: 20,
+    lineHeight: ms(20),
   },
   bottomContainer: {
-    paddingHorizontal: 20,
-    gap: 16,
+    paddingHorizontal: s(20),
+    gap: s(16),
   },
   goBackButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
   goBackButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
   addBankButton: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
   addBankButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#000000',
   },
 });

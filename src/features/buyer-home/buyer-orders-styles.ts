@@ -1,0 +1,206 @@
+import { StyleSheet, Platform } from 'react-native';
+import { scale, verticalScale, moderateScale } from '@/utils/scale';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FAFAF9',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: scale(20),
+    marginTop: Platform.OS === 'ios' ? verticalScale(60) : verticalScale(40),
+    marginBottom: verticalScale(20),
+    gap: scale(10),
+  },
+  backButton: {
+    width: scale(48),
+    height: scale(48),
+    borderRadius: scale(15),
+    backgroundColor: '#4CAF50',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontFamily: 'DMSans_500Medium',
+    fontSize: moderateScale(18),
+    lineHeight: moderateScale(23),
+    color: '#000000',
+    marginLeft: scale(15),
+  },
+  tabsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1.8,
+    borderColor: '#EBEBEB',
+    borderRadius: scale(14),
+    padding: scale(6),
+    marginHorizontal: scale(20),
+    height: verticalScale(54),
+    marginBottom: verticalScale(15),
+  },
+  tab: {
+    flex: 1,
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: scale(12),
+  },
+  activeTab: {
+    backgroundColor: '#4CAF50',
+  },
+  tabText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(15),
+    color: '#000000',
+  },
+  activeTabText: {
+    color: '#FFFFFF',
+  },
+  listContent: {
+    paddingHorizontal: scale(20),
+    paddingBottom: verticalScale(100), // Space for NavBar
+    gap: verticalScale(15),
+  },
+  orderCard: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1.5,
+    borderColor: '#EBEBEB',
+    borderRadius: scale(14),
+    padding: scale(16),
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: verticalScale(12),
+  },
+  orderIdText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(14),
+    color: '#898989',
+  },
+  orderIdValue: {
+    color: '#000000',
+  },
+  statusText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(14),
+    color: '#4CAF50',
+  },
+  statusTextCancelled: {
+    color: '#E62326',
+  },
+  cardBody: {
+    flexDirection: 'row',
+    marginBottom: verticalScale(12),
+  },
+  productImage: {
+    width: scale(100),
+    height: scale(100),
+    borderRadius: scale(20),
+    marginRight: scale(15),
+  },
+  productInfo: {
+    flex: 1,
+    justifyContent: 'center',
+    gap: verticalScale(2),
+  },
+  productName: {
+    fontFamily: 'DMSans_500Medium',
+    fontSize: moderateScale(15),
+    color: '#000000',
+  },
+  productWeight: {
+    fontFamily: 'DMSans_500Medium',
+    fontSize: moderateScale(14),
+    color: '#000000',
+    marginBottom: verticalScale(4),
+  },
+  vendorName: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(13),
+    color: '#898989',
+  },
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: verticalScale(2),
+  },
+  locationText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(13),
+    color: '#898989',
+    marginLeft: scale(4),
+  },
+  priceContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginLeft: scale(10),
+  },
+  priceText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: moderateScale(18),
+    color: '#4CAF50',
+  },
+  cardFooter: {
+    borderTopWidth: 1,
+    borderTopColor: '#EBEBEB',
+    paddingTop: verticalScale(12),
+    marginTop: verticalScale(4),
+  },
+  deliveryLabel: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(13),
+    color: '#898989',
+    marginBottom: verticalScale(2),
+  },
+  deliveryTime: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(14),
+    color: '#000000',
+  },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: verticalScale(15),
+    paddingTop: verticalScale(12),
+    gap: scale(15),
+  },
+  actionButton: {
+    flex: 1,
+    height: verticalScale(42),
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#4CAF50',
+    borderRadius: scale(14),
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    shadowColor: '#4CAF50',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  actionButtonText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: moderateScale(14),
+    color: '#000000',
+  },
+  fullWidthButton: {
+    height: verticalScale(42),
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#4CAF50',
+    borderRadius: scale(14),
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: verticalScale(15),
+  }
+});

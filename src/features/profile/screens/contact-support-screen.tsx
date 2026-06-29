@@ -4,6 +4,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet, ScrollView, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function ContactSupportScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
@@ -72,27 +73,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    gap: 16,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
+    gap: s(16),
   },
   supportStatusCard: {
     flexDirection: 'row',
@@ -101,37 +102,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 16,
+    borderRadius: s(14),
+    padding: s(16),
   },
   supportStatusInfo: {
-    gap: 4,
+    gap: s(4),
   },
   supportStatusTitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   supportStatusTime: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
   onlineStatusText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#4CAF50',
   },
   divider: {
-    height: 1,
+    height: vs(1),
     backgroundColor: '#EBEBEB',
-    marginVertical: 4,
+    marginVertical: vs(4),
   },
   sectionTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
-    marginBottom: 4,
+    marginBottom: vs(4),
   },
   contactCard: {
     flexDirection: 'row',
@@ -139,29 +140,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 16,
-    gap: 12,
+    borderRadius: s(14),
+    padding: s(16),
+    gap: s(12),
   },
   iconBox: {
-    width: 45,
-    height: 42,
+    width: s(45),
+    height: vs(42),
     backgroundColor: 'rgba(76, 175, 80, 0.2)',
-    borderRadius: 12,
+    borderRadius: s(12),
     justifyContent: 'center',
     alignItems: 'center',
   },
   contactInfo: {
-    gap: 4,
+    gap: s(4),
   },
   contactTitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   contactSubtitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
 });

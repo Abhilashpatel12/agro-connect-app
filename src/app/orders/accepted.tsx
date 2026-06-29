@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
+import { s, vs, ms } from '@/utils/scale';
 export default function OrderAcceptedScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ name: string, crop: string, qty: string, total: string }>();
@@ -54,84 +55,84 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: s(20),
     justifyContent: 'space-between',
-    paddingBottom: 40,
-    paddingTop: 80,
+    paddingBottom: vs(40),
+    paddingTop: vs(80),
   },
   centerBox: {
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: vs(40),
   },
   graphicContainer: {
-    width: 160,
-    height: 160,
+    width: s(160),
+    height: vs(160),
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 30,
+    marginBottom: vs(30),
   },
   title: {
     fontFamily: 'DMSans_700Bold', // Or 600 if available
     fontWeight: '600',
-    fontSize: 32,
+    fontSize: ms(32),
     color: '#4CAF50',
-    marginBottom: 10,
+    marginBottom: vs(10),
     textAlign: 'center',
   },
   subtitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#525252',
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: vs(40),
   },
   earningsCard: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#4CAF50',
-    borderRadius: 12,
+    borderRadius: s(12),
     width: '100%',
-    maxWidth: 372,
-    paddingVertical: 14,
-    gap: 8,
+    maxWidth: s(372),
+    paddingVertical: vs(14),
+    gap: s(8),
   },
   earningsLabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#FFFFFF',
   },
   earningsAmount: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#FFFFFF',
   },
   homeButton: {
     width: '100%',
     alignSelf: 'center',
-    maxWidth: 372,
+    maxWidth: s(372),
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
+    borderRadius: s(14),
     shadowColor: '#4CAF50',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
     shadowRadius: 4,
     elevation: 2,
-    paddingVertical: 16,
+    paddingVertical: vs(16),
   },
   homeButtonInner: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
+    gap: s(10),
   },
   homeIcon: {
-    width: 20, // Adjusted from 28 to look proportionate with text
-    height: 20,
+    width: s(20), // Adjusted from 28 to look proportionate with text
+    height: vs(20),
   },
   homeButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
     textAlign: 'center',
   },

@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { NavBar } from '@/components/nav-bar';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 
-import { styles } from './styles';
+import { styles } from './_styles';
 
 type OrderTab = 'New' | 'Active' | 'Completed';
 
@@ -179,7 +178,9 @@ function OrderCard({ order }: { order: OrderItem }) {
 
 export default function OrdersScreen() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<OrderTab>('New');
+  const params = useLocalSearchParams();
+  const initialTab = (params.tab as OrderTab) || 'New';
+  const [activeTab, setActiveTab] = useState<OrderTab>(initialTab);
   const tabs: OrderTab[] = ['New', 'Active', 'Completed'];
 
   return (
@@ -207,8 +208,6 @@ export default function OrdersScreen() {
           <OrderCard key={order.id} order={order} />
         ))}
       </ScrollView>
-
-      <NavBar />
     </View>
   );
 }

@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
+import { s, vs, ms } from '@/utils/scale';
 export default function TrackOrderScreen() {
   const router = useRouter();
 
@@ -166,10 +167,10 @@ const styles = StyleSheet.create({
   
   mapDashedLine: {
     position: 'absolute',
-    width: 260.7,
+    width: s(260.7),
     height: 0,
-    left: 63.65,
-    top: 93,
+    left: s(63.65),
+    top: vs(93),
     borderTopWidth: 1.5,
     borderStyle: 'dashed',
     borderColor: '#4CAF50',
@@ -181,15 +182,15 @@ const styles = StyleSheet.create({
   },
   locationLabelAbsolute: {
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 8,
+    paddingHorizontal: s(10),
+    paddingVertical: vs(5),
+    borderRadius: s(8),
     alignItems: 'center',
     justifyContent: 'center',
   },
   locationLabelTextAbsolute: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 10,
+    fontSize: ms(10),
     color: '#000',
   },
   triangleDown: {
@@ -231,8 +232,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 20,
+    borderRadius: s(14),
+    padding: s(20),
     paddingBottom: 0, // Let items handle bottom spacing
   },
   timelineContainer: { position: 'relative' },
@@ -250,9 +251,9 @@ const styles = StyleSheet.create({
   
   connectingLine: { 
     position: 'absolute', 
-    left: 19, 
+    left: s(19), 
     width: 0, 
-    height: 42, 
+    height: vs(42), 
     borderLeftWidth: 1, 
     borderStyle: 'dashed', 
     zIndex: 1 

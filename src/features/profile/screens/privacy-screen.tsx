@@ -4,6 +4,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 const PRIVACY_POLICIES = [
   {
     title: '1. What We Collect',
@@ -87,26 +88,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
   },
   highlightBox: {
     flexDirection: 'row',
@@ -114,39 +115,39 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 14,
-    gap: 12,
-    marginBottom: 24,
+    borderRadius: s(14),
+    padding: s(14),
+    gap: s(12),
+    marginBottom: vs(24),
   },
   highlightText: {
     flex: 1,
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#4CAF50',
-    lineHeight: 18,
+    lineHeight: ms(18),
   },
   listContainer: {
-    gap: 12,
+    gap: s(12),
   },
   card: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1.8,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    padding: 16,
-    gap: 4,
+    borderRadius: s(14),
+    padding: s(16),
+    gap: s(4),
   },
   cardTitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
-    lineHeight: 18,
+    lineHeight: ms(18),
   },
   cardContent: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
-    lineHeight: 22,
+    lineHeight: ms(22),
   },
 });

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Platform, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function AddBankScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
@@ -108,46 +109,46 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    gap: 15,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
+    gap: s(15),
   },
   fieldBox: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    borderRadius: s(14),
+    paddingVertical: vs(15),
+    paddingHorizontal: s(20),
     justifyContent: 'center',
   },
   fieldLabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
-    marginBottom: 4,
+    marginBottom: vs(4),
   },
   fieldValue: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
     padding: 0,
     margin: 0,
@@ -162,14 +163,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
     backgroundColor: '#FAFAF9',
   },
   verifyButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
   },
   verifyButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
 });

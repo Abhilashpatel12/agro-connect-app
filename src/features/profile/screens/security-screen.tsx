@@ -1,11 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Modal, Switch } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { s, vs, ms } from '@/utils/scale';
 export function SecurityScreen() {
   const router = useRouter();
+  const { role } = useLocalSearchParams<{ role?: string }>();
   const insets = useSafeAreaInsets();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -52,23 +54,27 @@ export function SecurityScreen() {
           />
         </View>
 
-        <View style={styles.divider} />
+        {role !== 'buyer' && (
+          <>
+            <View style={styles.divider} />
 
-        <Text style={styles.sectionTitle}>Privacy Controls</Text>
-        <View style={styles.list}>
-          <SettingItem
-            title="Show Profile"
-            description="Shown profile to buyers"
-            value={toggles.showProfile}
-            onToggle={() => toggleSwitch('showProfile')}
-          />
-          <SettingItem
-            title="Allow Buyers Review"
-            description="Shown on your listings"
-            value={toggles.allowReview}
-            onToggle={() => toggleSwitch('allowReview')}
-          />
-        </View>
+            <Text style={styles.sectionTitle}>Privacy Controls</Text>
+            <View style={styles.list}>
+              <SettingItem
+                title="Show Profile"
+                description="Shown profile to buyers"
+                value={toggles.showProfile}
+                onToggle={() => toggleSwitch('showProfile')}
+              />
+              <SettingItem
+                title="Allow Buyers Review"
+                description="Shown on your listings"
+                value={toggles.allowReview}
+                onToggle={() => toggleSwitch('allowReview')}
+              />
+            </View>
+          </>
+        )}
 
         <View style={styles.divider} />
 
@@ -159,29 +165,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
   },
   list: {
-    gap: 15,
+    gap: s(15),
   },
   itemBox: {
     flexDirection: 'row',
@@ -190,36 +196,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    minHeight: 68,
+    borderRadius: s(14),
+    paddingVertical: vs(14),
+    paddingHorizontal: s(16),
+    minHeight: vs(68),
   },
   itemTextContainer: {
     flex: 1,
-    paddingRight: 16,
-    gap: 4,
+    paddingRight: s(16),
+    gap: s(4),
   },
   itemTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#000000',
   },
   itemDescription: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#898989',
   },
   divider: {
-    height: 1,
+    height: vs(1),
     backgroundColor: '#EBEBEB',
-    marginVertical: 24,
+    marginVertical: vs(24),
   },
   sectionTitle: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
-    marginBottom: 12,
+    marginBottom: vs(12),
   },
   modalOverlay: {
     flex: 1,
@@ -228,21 +234,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
-    width: 370,
+    width: s(370),
     backgroundColor: '#FAFAF9',
     borderWidth: 1.8,
     borderColor: '#CECFCE',
-    borderRadius: 14,
-    padding: 20,
+    borderRadius: s(14),
+    padding: s(20),
     alignItems: 'center',
-    gap: 30,
+    gap: s(30),
   },
   modalText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
-    lineHeight: 29,
+    fontSize: ms(16),
+    lineHeight: ms(29),
     textAlign: 'center',
-    letterSpacing: 0.16,
+    letterSpacing: ms(0.16),
     color: '#000000',
     width: '100%',
   },
@@ -250,13 +256,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 15,
+    gap: s(15),
     width: '100%',
   },
   modalButton: {
     flex: 1,
-    height: 42,
-    borderRadius: 14,
+    height: vs(42),
+    borderRadius: s(14),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -267,7 +273,7 @@ const styles = StyleSheet.create({
   },
   modalButtonNoText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
   },
   modalButtonYes: {
@@ -275,7 +281,7 @@ const styles = StyleSheet.create({
   },
   modalButtonYesText: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#FFFFFF',
   },
 });

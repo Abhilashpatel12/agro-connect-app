@@ -99,7 +99,7 @@ export const PROFILE_SECTIONS: ProfileSection[] = [
         title: 'Rate the App',
         icon: require('@/assets/profile_assests/image 90.svg'), // Using existing star as fallback
         iconBg: 'rgba(76, 175, 80, 0.2)',
-        href: '/profile/rate',
+        href: '/profile/rate-app',
       },
     ],
   },
@@ -156,3 +156,80 @@ export const PROFILE_DETAIL_COPY: Record<
 
 
 
+
+const getCommonSections = (role: 'buyer' | 'seller'): ProfileSection[] => {
+  return PROFILE_SECTIONS.slice(1).map(section => ({
+    ...section,
+    data: section.data.map(item => ({
+      ...item,
+      href: `${item.href}?role=${role}`
+    }))
+  }));
+};
+
+export const BUYER_PROFILE_SECTIONS: ProfileSection[] = [
+  {
+    title: 'Account',
+    data: [
+      {
+        id: 'orders',
+        title: 'Order History',
+        icon: require('@/assets/profile_assests/image 15.svg'),
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/buyer-orders',
+      },
+      {
+        id: 'wishlist',
+        title: 'Wishlist',
+        icon: require('@/assets/profile_assests/image 90.svg'), // Using star/review icon fallback
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/profile/wishlist',
+      },
+      {
+        id: 'saved-addresses',
+        title: 'Saved Addresses',
+        icon: require('@/assets/profile_assests/image 34.svg'), // Using notification/bell fallback or any icon
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/profile/addresses',
+      },
+    ],
+  },
+  ...getCommonSections('buyer'),
+];
+
+export const SELLER_PROFILE_SECTIONS: ProfileSection[] = [
+  {
+    title: 'Account',
+    data: [
+      {
+        id: 'store-details',
+        title: 'Store Details',
+        icon: require('@/assets/profile_assests/image 85.svg'),
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/profile/store-details',
+      },
+      {
+        id: 'product-management',
+        title: 'Product Management',
+        icon: require('@/assets/profile_assests/image 85.svg'),
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/crops',
+      },
+      {
+        id: 'earnings',
+        title: 'Earnings',
+        icon: require('@/assets/profile_assests/image 86.svg'),
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/profile/earnings',
+      },
+      {
+        id: 'analytics',
+        title: 'Sales Analytics',
+        icon: require('@/assets/profile_assests/image 37.svg'),
+        iconBg: 'rgba(76, 175, 80, 0.2)',
+        href: '/analytics',
+      },
+    ],
+  },
+  ...getCommonSections('seller'),
+];

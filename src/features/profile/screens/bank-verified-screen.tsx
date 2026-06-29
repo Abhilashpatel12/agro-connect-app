@@ -4,6 +4,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet, Platform } from 'react-native';
 import { Image } from 'expo-image';
 
+import { s, vs, ms } from '@/utils/scale';
 export function BankVerifiedScreen() {
   const router = useRouter();
 
@@ -51,33 +52,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: s(30),
   },
   iconContainer: {
-    marginBottom: 40,
+    marginBottom: vs(40),
   },
   title: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 30,
+    fontSize: ms(30),
     color: '#4CAF50',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: vs(10),
   },
   subtitle: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#525252',
     textAlign: 'center',
-    lineHeight: 24,
+    lineHeight: ms(24),
   },
   bottomBar: {
-    paddingHorizontal: 20,
-    paddingBottom: 40,
-    gap: 15,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(40),
+    gap: s(15),
   },
   button: {
-    borderRadius: 14,
-    height: 55,
+    borderRadius: s(14),
+    height: vs(55),
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
   },
   goBackText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
   addUpiButton: {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   },
   addUpiText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#000000',
   },
 });

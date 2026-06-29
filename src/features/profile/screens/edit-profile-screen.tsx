@@ -1,22 +1,25 @@
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, Text, View, StyleSheet, Platform, TextInput } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 
+import { s, vs, ms } from '@/utils/scale';
 const AVATAR = require('@/assets/profile_assests/Ellipse 1008.png');
 
 export function EditProfileScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
+  const { role } = useLocalSearchParams<{ role?: string }>();
+
   const [avatar, setAvatar] = useState<string | null>(null);
   const [form, setForm] = useState({
     fullName: 'Rahul Kumar',
     mobileNumber: '00000 00000',
-    village: 'Warangal, Telangana',
+    location: 'Warangal, Telangana',
     cropType: 'Rice, Cotton',
     experience: '10 Years',
     landSize: '10 Acres',
@@ -35,15 +38,24 @@ export function EditProfileScreen() {
     }
   };
 
+  const goBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      // Fallback if accessed directly (e.g. via reload)
+      router.replace('/profile');
+    }
+  };
+
   const handleSave = () => {
     // In a real app, save the updated `form` and `avatar` states to backend/context here.
-    router.back();
+    goBack();
   };
 
   return (
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: Math.max(insets.top, 20) }]}>
-        <Pressable style={styles.backButton} onPress={() => router.back()}>
+        <Pressable style={styles.backButton} onPress={goBack}>
           <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
         </Pressable>
         <Text style={styles.headerTitle}>Edit Profile</Text>
@@ -85,29 +97,33 @@ export function EditProfileScreen() {
             keyboardType="phone-pad"
           />
           <FieldBox
-            label="Village / Town"
-            value={form.village}
-            onChangeText={(t: string) => setForm((prev) => ({ ...prev, village: t }))}
+            label="Location"
+            value={form.location}
+            onChangeText={(t: string) => setForm((prev) => ({ ...prev, location: t }))}
             labelColor="#898989"
           />
-          <FieldBox
-            label="Primary Crop Type"
-            value={form.cropType}
-            onChangeText={(t: string) => setForm((prev) => ({ ...prev, cropType: t }))}
-            labelColor="#898989"
-          />
-          <FieldBox
-            label="Years of Experience"
-            value={form.experience}
-            onChangeText={(t: string) => setForm((prev) => ({ ...prev, experience: t }))}
-            labelColor="#6D6D6D"
-          />
-          <FieldBox
-            label="Land Size (Acres)"
-            value={form.landSize}
-            onChangeText={(t: string) => setForm((prev) => ({ ...prev, landSize: t }))}
-            labelColor="#898989"
-          />
+          {role === 'seller' && (
+            <>
+              <FieldBox
+                label="Primary Crop Type"
+                value={form.cropType}
+                onChangeText={(t: string) => setForm((prev) => ({ ...prev, cropType: t }))}
+                labelColor="#898989"
+              />
+              <FieldBox
+                label="Years of Experience"
+                value={form.experience}
+                onChangeText={(t: string) => setForm((prev) => ({ ...prev, experience: t }))}
+                labelColor="#6D6D6D"
+              />
+              <FieldBox
+                label="Land Size (Acres)"
+                value={form.landSize}
+                onChangeText={(t: string) => setForm((prev) => ({ ...prev, landSize: t }))}
+                labelColor="#898989"
+              />
+            </>
+          )}
         </View>
       </ScrollView>
 
@@ -126,7 +142,7 @@ function FieldBox({ label, value, onChangeText, labelColor, keyboardType = 'defa
       <Text style={[styles.fieldLabel, { color: labelColor }]}>{label}</Text>
       <TextInput
         style={styles.fieldValue}
-        value={value}
+        value={value || ''}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
       />
@@ -143,81 +159,81 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: s(20),
+    paddingBottom: vs(20),
     zIndex: 10,
   },
   backButton: {
-    width: 48,
-    height: 48,
+    width: s(48),
+    height: vs(48),
     backgroundColor: '#4CAF50',
-    borderRadius: 15,
+    borderRadius: s(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 18,
+    fontSize: ms(18),
     color: '#000000',
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
   },
   profileSection: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: vs(30),
   },
   avatarContainer: {
-    width: 200,
-    height: 200,
-    marginBottom: 12,
+    width: s(200),
+    height: vs(200),
+    marginBottom: vs(12),
   },
   avatar: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+    width: s(200),
+    height: vs(200),
+    borderRadius: s(100),
     borderWidth: 3,
     borderColor: '#4CAF50',
   },
   editIconBtn: {
     position: 'absolute',
-    bottom: 15,
-    right: 15,
-    width: 38,
-    height: 38,
+    bottom: vs(15),
+    right: s(15),
+    width: s(38),
+    height: vs(38),
     backgroundColor: '#FFFFFF',
     borderWidth: 1.8,
     borderColor: '#4CAF50',
-    borderRadius: 19,
+    borderRadius: s(19),
     justifyContent: 'center',
     alignItems: 'center',
   },
   tapToChange: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
+    fontSize: ms(14),
     color: '#9A9A9A',
   },
   formSection: {
-    gap: 14,
+    gap: s(14),
   },
   fieldBox: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#EBEBEB',
-    borderRadius: 14,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    borderRadius: s(14),
+    paddingVertical: vs(15),
+    paddingHorizontal: s(20),
     justifyContent: 'center',
   },
   fieldLabel: {
     fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
-    marginBottom: 4,
+    fontSize: ms(14),
+    marginBottom: vs(4),
   },
   fieldValue: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 16,
+    fontSize: ms(16),
     color: '#000000',
     padding: 0,
     margin: 0,
@@ -227,14 +243,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: s(20),
+    paddingTop: vs(10),
     backgroundColor: '#FAFAF9',
   },
   saveButton: {
     backgroundColor: '#4CAF50',
-    borderRadius: 14,
-    height: 50,
+    borderRadius: s(14),
+    height: vs(50),
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
@@ -254,7 +270,7 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     fontFamily: 'DMSans_500Medium',
-    fontSize: 15,
+    fontSize: ms(15),
     color: '#FFFFFF',
   },
 });
